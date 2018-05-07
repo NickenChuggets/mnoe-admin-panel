@@ -118,20 +118,14 @@
       else
         "mnoe_admin_panel.dashboard.product_markups.widget.list.table.customer"
 
-    onMarkupAdded = ->
+    onChange = ->
       fetchProductMarkups(vm.markups.nbItems, vm.markups.offset)
 
-    onMarkupChanged = ->
-      fetchProductMarkups(vm.markups.nbItems, vm.markups.offset)
-
-    # Notify me if a markup is added
-    MnoeObservables.registerCb(OBS_KEYS.markupAdded, onMarkupAdded)
-    # Notify me if the list changes
-    MnoeObservables.registerCb(OBS_KEYS.markupChanged, onMarkupChanged)
+    # Notify me if changes are made
+    MnoeObservables.registerCb(OBS_KEYS.changesMade, onChange)
 
     this.$onDestroy = ->
-      MnoeObservables.unsubscribe(OBS_KEYS.markupAdded, onMarkupAdded)
-      MnoeObservables.unsubscribe(OBS_KEYS.markupChanged, onMarkupChanged)
+      MnoeObservables.unsubscribe(OBS_KEYS.changesMade, onMarkupAdded)
 
     return
 
